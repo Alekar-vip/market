@@ -40,6 +40,17 @@ public class Producto {
 
     private Boolean estado;
 
+    /*
+        Mapeando las relaciones entre los Entity
+        Pruducto esta relacionado con Categoria
+        insertable y update igual a false es para a travez de esta relacion no poder borrar, actualizar,insertar
+        una nueva Categoria.
+        Esto simplemente nos servira para recuperar a que Categoria pertenece un Producto
+     */
+    @ManyToOne
+    @JoinColumn(name = "id_categoria", insertable = false, updatable = false)
+    private Categoria categoria;
+
     public Integer getIdProducto() {
         return idProducto;
     }

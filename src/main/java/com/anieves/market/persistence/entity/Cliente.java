@@ -2,6 +2,8 @@ package com.anieves.market.persistence.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 public class Cliente {
 
@@ -18,6 +20,9 @@ public class Cliente {
 
     @Column(name = "correo_electronico")
     private String correoElectronico;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Compra> compras;
 
     public String getId() {
         return id;
