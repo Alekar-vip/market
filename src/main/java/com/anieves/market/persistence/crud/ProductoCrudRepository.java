@@ -26,5 +26,5 @@ public interface ProductoCrudRepository extends CrudRepository<Producto, Integer
 
 
     //Recuperar los productos escasos, usamos el atributo cantidad stock, que el estado del producto sea activo
-    Optional<List<Producto>> findByCantidadStockLeesThanAndEstado(int cantidadStock, boolean estado);
+    Optional<List<Producto>> findByCantidadStockLessThanAndEstado(int cantidadStock, boolean estado);
 }
