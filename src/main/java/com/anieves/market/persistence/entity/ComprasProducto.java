@@ -9,7 +9,7 @@ import java.math.BigDecimal;
  */
 
 @Entity
-@Table(name = "COMPRAS_PRODUCTOS")
+@Table(name = "compras_productos")
 public class ComprasProducto {
 
     @EmbeddedId
