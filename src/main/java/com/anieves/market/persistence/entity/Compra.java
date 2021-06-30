@@ -31,9 +31,10 @@ public class Compra {
 
     /*
         me interesa tener desde mi clase compra, toda la lista de productos que pertenecen a una compra,
-        de esta manera desde una compra puedo acceder a todos los productos que pertenecen a esa compra
+        de esta manera desde una compra puedo acceder a todos los productos que pertenecen a esa compra,
+        tambien quiero indicarle que se guarden los productos en cascada
      */
-    @OneToMany(mappedBy = "producto")
+    @OneToMany(mappedBy = "compra", cascade = {CascadeType.ALL})
     private List<ComprasProducto> productos;
 
     public Integer getIdCompra() {

@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
 //el @Mapper(componentModel = "spring") es con el fin de poder inyectar posteriormente desde otro lugar
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {ProductMapper.class})
 public interface PurchaseItemMapper {
 
     @Mappings({
@@ -17,7 +17,7 @@ public interface PurchaseItemMapper {
             //@Mapping(source = "total", target = "total"),
             @Mapping(source = "estado", target = "active")
     })
-    PurchaseItem toPurchaseItem(ComprasProducto comprasProducto);
+    PurchaseItem toPurchaseItem(ComprasProducto producto);
 
     @InheritInverseConfiguration
     @Mappings({
@@ -25,5 +25,5 @@ public interface PurchaseItemMapper {
             @Mapping(target = "producto", ignore = true),
             @Mapping(target = "id.idCompra", ignore = true)
     })
-    ComprasProducto toComprasProducto(PurchaseItem purchaseItem);
+    ComprasProducto toComprasProducto(PurchaseItem item);
 }
