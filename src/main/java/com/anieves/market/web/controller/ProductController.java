@@ -2,6 +2,10 @@ package com.anieves.market.web.controller;
 
 import com.anieves.market.domain.Product;
 import com.anieves.market.domain.service.ProductService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +24,8 @@ public class ProductController {
     //este servicio se encarga de obtener toda la lista de productos dentro del supermarket
     //usamos @GetMapping porque estamos obteniendo informacion
     @GetMapping("/all")
+    @ApiOperation("Get all supermarket products")
+    @ApiResponse(code = 200, message = "OK")
     public ResponseEntity<List<Product>> getAll(){
         //creamos una nueva instancia de ResponseEntity
         //HttpStatus.OK) significa que respondio de manera de adecuada cuando fue llamado
@@ -28,7 +34,12 @@ public class ProductController {
 
     //recuperar un prooducto dado su Id
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProduct(@PathVariable("id") int productId){
+    @ApiOperation("Search a product with an ID")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 404, message = "Product not found")
+    })
+    public ResponseEntity<Product> getProduct(@ApiParam(value = "The id of the product", required = true, example = "7") @PathVariable("id") int productId){
         //getProduct() responde a un Optional, podemos utilizar operador map
         return productService.getProduct(productId)
                 .map(product -> new ResponseEntity<>(product, HttpStatus.OK))
